@@ -1,0 +1,9 @@
+{
+  "name": "sdl-kitchensink",
+  "version-string": "1.0.12-dev",
+  "dependencies": [
+    "ffmpeg",
+    "libass",
+    "sdl2"
+  ]
+}
