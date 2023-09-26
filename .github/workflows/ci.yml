@@ -39,3 +39,25 @@ jobs:
         mkdir build && cd build
         cmake -DCMAKE_BUILD_TYPE=Release -DUSE_TIDY=1 -DBUILD_EXAMPLES=1 ..
         make -j2
+        
+  msvc-ci:
+    name: Run CI on Windows/MSVC
+    runs-on: windows-latest
+    env:
+      CMAKE_CXX_COMPILER: cl
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - uses: lukka/get-cmake@latest
+
+    - name: Restore from cache and setup vcpkg executable and data files.
+      uses: lukka/run-vcpkg@v11
+      with:
+        vcpkgJsonGlob: 'vcpkg.json'
+
+    - name: Build
+      run: |
+        mkdir build && cd build
+        cmake -DCMAKE_BUILD_TYPE=Release -DUSE_TIDY=1 -DBUILD_EXAMPLES=1 ..
+        make -j2
